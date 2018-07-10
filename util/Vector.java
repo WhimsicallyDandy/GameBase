@@ -58,6 +58,12 @@ public class Vector {
 		// fixes up angle depending on x
 		if (Math.signum(x)<0) {angle = 180+(90-angle);}
 	}
+	private void unitVector() {
+		
+	}
+	private void rotateVector() {
+		
+	}
 	
 	// keeps angle within 0-360
 	private float clamp360(float a) {

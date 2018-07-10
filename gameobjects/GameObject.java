@@ -25,8 +25,8 @@ public class GameObject {
 	private Position position;
 	private Image sprite;
 	private Hitbox hitbox;
-	private Vector velocity;
-	private Vector accel;
+	private Vector2 velocity;
+	private Vector2 accel;
 	
 	private float objectAngle;
 	
@@ -46,10 +46,10 @@ public class GameObject {
 		sprite = new Image(imgsrc);
 		hitbox = new Hitbox(position, sprite);
 		objectAngle = rotationAngle;
-		sprite.setRotation(rotationAngle);
+		sprite.setRotation(rotationAngle+90);
 		
-		velocity = new Vector(0, objectAngle);
-		accel = new Vector(0, objectAngle);
+		velocity = new Vector2();
+		accel = new Vector2();
 		
 		
 	}
@@ -66,6 +66,8 @@ public class GameObject {
 		hitbox.setPos(position);
 		// keeps angle within 360 at all times
 		sprite.setRotation(clamp360(sprite.getRotation()));
+		objectAngle = clamp360(objectAngle);
+		
 	}
 	
 	/**
@@ -106,21 +108,21 @@ public class GameObject {
 	public void setObjAngle(float angle) {objectAngle=angle;}
 	public void addObjAngle(float angle) {objectAngle+=angle;}
 	
-	public void addVelAngle(float angle) {velocity.addAngle(angle);}
+	public void addVelAngle(float angle) {velocity.rotateAngle(angle);}
 	
-	public void setVelMag(float m) {velocity.setMagnitude(m);}
-	public void addVelMag(float m) {velocity.addMagnitude(m);}
+	public void setVelMag(float m) {velocity.setMag(m);}
+	public void addVelMag(float m) {velocity.addMag(m);}
 	
-	public void setVelocity(float m, float a) {velocity.setVector(m, a);}
-	public void setVelocity(Vector v) {velocity = new Vector(v);}
+	public void setVelocity(float m, float a) {velocity.setVec(m, a);}
+	public void setVelocity(Vector2 v) {velocity = new Vector2(v);}
 	
 	public void accelerate() {velocity.addVector(accel);}
-	public void accelerate(Vector v) {velocity.addVector(v);}
+	public void accelerate(Vector2 v) {velocity.addVector(v);}
 	public void addVelocity(float m, float a) {velocity.addVector(m, a);}
-	public void setAcceleration(float m, float a) {accel.setVector(m, a);}
-	public void setAcceleration(Vector v) {accel.setVector(v);}
+	public void setAcceleration(float m, float a) {accel.setVec(m, a);}
+	public void setAcceleration(Vector2 v) {accel = new Vector2(v);}
 	public void addAcceleration(float m, float a) {accel.addVector(m, a);}
-	public void addAcceleration(Vector v) {accel.addVector(v);}
+	public void addAcceleration(Vector2 v) {accel.addVector(v);}
 	
 	public void setXSpeed(float x) {velocity.setXVec(x);}
 	public void setYSpeed(float y) {velocity.setYVec(y);}
@@ -135,16 +137,16 @@ public class GameObject {
 	
 	public float getXSpeed() {return velocity.getXVec();}
 	public float getYSpeed() {return velocity.getYVec();}
-	public float getVelMag() {return velocity.getMagnitude();}
-	public Vector getVelocity() {return new Vector(velocity);}
+	public float getVelMag() {return velocity.getMag();}
+	public Vector2 getVelocity() {return new Vector2(velocity);}
 	
 	public float getXAccel() {return accel.getXVec();}
 	public float getYAccel() {return accel.getYVec();}
-	public float getAccelMag() {return accel.getMagnitude();}
-	public Vector getAcceleration() {return accel;}
+	public float getAccelMag() {return accel.getMag();}
+	public Vector2 getAcceleration() {return accel;}
 	
 	public float getSpriteAngle() {return sprite.getRotation();}
-	public float getObjectAngle() {return objectAngle;}
+	public float getObjAngle() {return objectAngle;}
 	public float getVelocityAngle() {return velocity.getAngle();}
 	
 	

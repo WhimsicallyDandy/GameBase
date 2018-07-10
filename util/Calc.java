@@ -9,11 +9,23 @@ public class Calc {
 	public static float cosDeg(float x) {
 		return (float)Math.cos(Math.toRadians(x));
 	}
+	public static float tanDeg(float x) {
+		return (float)Math.tan(Math.toRadians(x));
+	}
 	public static float aSinDeg(float x) {
 		return (float)Math.toDegrees(Math.asin(x));
 	}
 	public static float aCosDeg(float x) {
 		return (float)Math.toDegrees(Math.acos(x));
+	}
+	public static float aTan2(float x, float y) {
+		if (x==0) {
+			return 0;
+		} else if (y==0) {
+			return 90;
+		} else {
+			return (float)Math.toDegrees(Math.atan(x));
+		}
 	}
 	public static float hypotenuse(float x, float y) {
 		return (float) Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
